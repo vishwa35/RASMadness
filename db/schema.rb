@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170720025327) do
 
-  create_table "ats_comps", force: :cascade do |t|
+  create_table "ats_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "bor_comps", force: :cascade do |t|
+  create_table "bor_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ccr_comps", force: :cascade do |t|
+  create_table "ccr_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "chaos_comps", force: :cascade do |t|
+  create_table "chaos_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "dd_comps", force: :cascade do |t|
+  create_table "dd_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "drd_comps", force: :cascade do |t|
+  create_table "drd_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "gateway_comps", force: :cascade do |t|
+  create_table "gateway_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "gwa_comps", force: :cascade do |t|
+  create_table "gwa_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mania_comps", force: :cascade do |t|
+  create_table "mania_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "masti_comps", force: :cascade do |t|
+  create_table "masti_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mayhem_comps", force: :cascade do |t|
+  create_table "mayhem_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "r2b2_comps", force: :cascade do |t|
+  create_table "r2b2_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rangeelo_comps", force: :cascade do |t|
+  create_table "rangeelo_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rcr_comps", force: :cascade do |t|
+  create_table "rcr_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rodeo_comps", force: :cascade do |t|
+  create_table "rodeo_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "royalty_comps", force: :cascade do |t|
+  create_table "royalty_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sanedo_comps", force: :cascade do |t|
+  create_table "sanedo_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20170720025327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "space_city_comps", force: :cascade do |t|
+  create_table "space_city_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false

@@ -1,4 +1,4 @@
-class ChaosComp < Competition
+class ChaosPred < Prediction
 
   @@teams = Set.new [Teams::GT,
     Teams::UMBC,

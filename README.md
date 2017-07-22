@@ -1,6 +1,7 @@
-# RASMadness
+# README
 
-Rails Application to allow the national garba-raas circuit to play a fun game of predicting competition outcomes.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
 Things you may want to cover:
 

@@ -1,4 +1,4 @@
-class Competition < ActiveRecord::Base
+class Prediction < ActiveRecord::Base
   self.abstract_class = true
 
   validate :prediction_validation

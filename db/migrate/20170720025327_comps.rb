@@ -2,7 +2,7 @@ class Comps < ActiveRecord::Migration[5.1]
   def change
     # TODO: Add keys in the users table for name, points, and team affiliation
 
-    create_table :chaos_comps do |t|
+    create_table :chaos_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -11,7 +11,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :bor_comps do |t|
+    create_table :bor_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -20,7 +20,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :ats_comps do |t|
+    create_table :ats_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -29,7 +29,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :drd_comps do |t|
+    create_table :drd_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -38,7 +38,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :dd_comps do |t|
+    create_table :dd_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -47,7 +47,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :gateway_comps do |t|
+    create_table :gateway_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -56,7 +56,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :rcr_comps do |t|
+    create_table :rcr_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -65,7 +65,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :masti_comps do |t|
+    create_table :masti_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -74,7 +74,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :mayhem_comps do |t|
+    create_table :mayhem_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -83,7 +83,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :rangeelo_comps do |t|
+    create_table :rangeelo_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -92,7 +92,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :sanedo_comps do |t|
+    create_table :sanedo_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -101,7 +101,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :ccr_comps do |t|
+    create_table :ccr_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -110,7 +110,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :space_city_comps do |t|
+    create_table :space_city_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -119,7 +119,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :mania_comps do |t|
+    create_table :mania_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -128,7 +128,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :rodeo_comps do |t|
+    create_table :rodeo_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -137,7 +137,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :royalty_comps do |t|
+    create_table :royalty_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -146,7 +146,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :r2b2_comps do |t|
+    create_table :r2b2_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -155,7 +155,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :gwa_comps do |t|
+    create_table :gwa_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false

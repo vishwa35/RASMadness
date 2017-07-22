@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CompetitionTest < ActiveSupport::TestCase
+class PredictionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
