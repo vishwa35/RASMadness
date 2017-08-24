@@ -1,0 +1,3 @@
+class CcrPred < Prediction
+
+end

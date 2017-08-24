@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">RAS Madness</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/">Dashboard<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Standings</a></li>
+        <li><a href="account">Account</a></li>
+        <li><a href="#"><div class="g-signin2" data-onsuccess="onSignIn"></div></a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<script>
+  var currUser;
+  function onSignIn(googleUser) {
+    if (getCookie("uid") != "") {
+      setCookie("uid", "", 0)
+    }
+    var profile = googleUser.getBasicProfile();
+    params = "email=" + profile.getEmail() + "&name=" + profile.getName() + "&image=" + profile.getImageUrl();
+    jQuery.post("http://localhost:3000/get_user", params, function(user) {
+      setCookie("uid", user["id"], 5);
+    }, "json")
+  }
+</script>

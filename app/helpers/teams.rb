@@ -20,4 +20,12 @@ module Teams
   SLU = "SLU Raas"
   UT = "Texas Raas (DSD)"
   UTD = "UTD TaRaas"
+
+  def self.list
+    list = []
+    self.constants.each do |c|
+      list.push(self.const_get(c))
+    end
+    return list
+  end
 end

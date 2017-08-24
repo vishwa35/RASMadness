@@ -1,0 +1,3 @@
+class DdPred < Prediction
+
+end

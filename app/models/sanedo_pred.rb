@@ -1,0 +1,3 @@
+class SanedoPred < Prediction
+
+end

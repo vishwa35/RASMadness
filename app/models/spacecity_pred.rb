@@ -1,0 +1,3 @@
+class SpacecityPred < Prediction
+
+end

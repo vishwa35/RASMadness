@@ -1,0 +1,3 @@
+class GwaPred < Prediction
+
+end

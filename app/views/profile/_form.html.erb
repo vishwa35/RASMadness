@@ -1,0 +1,87 @@
+<div class="container">
+  <form id="profile">
+    <div class="col-md-3">
+    <img src="https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg" class="img-circle" alt="Photo" width="200" height="200" id="photo">
+  </div>
+  <div class="col-md-9">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" aria-describedby="nameHelp" readonly>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" readonly>
+    </div>
+    <div class="form-group">
+      <label for="teamAffiliation">Team Affiliation</label>
+      <select class="form-control" id="teamAffiliation">
+        <option>None</option>
+        <% Teams.constants.each do |t| %>
+          <option><%= Teams.const_get(t) %></option>
+        <% end %>
+      </select>
+    </div>
+    <!-- <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" id="pointsSwitch">
+        Display my points on the standings page
+      </label>
+    </div> -->
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" id="predSwitch">
+        Display my predictions on my profile page
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+</div>
+
+<script>
+  uid = getCookie("uid");
+  jQuery.post("http://localhost:3000/id_get_user", "id=" + uid.toString(), function(user) {
+    var email_field = document.getElementById("email");
+    email_field.setAttribute("value", user["email"]);
+    var name_field = document.getElementById("name");
+    name_field.setAttribute("value", user["full_name"]);
+    var team = document.getElementById("teamAffiliation");
+    var user_team = user["team_affiliation"].toString();
+    var found = false;
+
+    for (x = 1; x < team.options.length && !found; x++) {
+      option = team.options[x].value;
+      if (user_team == option) {
+        team.selectedIndex = x;
+        found = true;
+      }
+    }
+    if (user["photo"] != "") {
+      var image = document.getElementById("photo");
+      image.setAttribute("src", user["photo"]);
+    }
+    if (user["predictions_bool"] == true) {
+      var predSwitch = document.getElementById("predSwitch");
+      predSwitch.setAttribute("checked", "checked");
+    }
+    // var name_field = document.getElementById("pointsSwitch");
+    // name_field.setAttribute("value", user["full_name"]);
+  }, "json");
+  $(function(){
+    $('#profile').on('submit', function(e){
+        e.preventDefault();
+        var team = document.getElementById("teamAffiliation");
+        var predSwitch = document.getElementById("predSwitch");
+        console.log(predSwitch.value)
+        params = "id="+ uid + "&team=" + team.options[team.selectedIndex].text + "&pred=" +  predSwitch.getAttribute("checked");
+        jQuery.post("http://localhost:3000/save_profile", params, function(x) {
+          if (x == false) {
+            launchModal();
+          }
+        }, "json");
+    });
+});
+  function save_profile() {
+
+  }
+</script>

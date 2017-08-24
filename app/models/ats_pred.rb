@@ -1,0 +1,3 @@
+class AtsPred < Prediction
+
+end

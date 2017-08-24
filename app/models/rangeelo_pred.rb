@@ -1,0 +1,3 @@
+class RangeeloPred < Prediction
+
+end

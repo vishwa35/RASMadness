@@ -1,0 +1,3 @@
+class RodeoPred < Prediction
+
+end

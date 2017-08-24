@@ -1,0 +1,78 @@
+<div class="container">
+  <nav>
+    <ul class="nav nav-justified nav-pills">
+      <li><a data-target="#past-tab" data-toggle="tab">Past</a></li>
+      <li  class="active"><a data-target="#current-tab" data-toggle="tab">Current</a></li>
+      <li><a data-target="#future-tab" data-toggle="tab">Future</a></li>
+    </ul>
+  </nav>
+</div>
+<hr>
+<br>
+<br>
+<div class="tab-content">
+<div class="tab-pane" id="past-tab">
+    <div class="container">
+      <div class="row" id='past'>
+      </div>
+    </div>
+  </div>
+<div class="tab-pane active" id="current-tab">
+    <div class="container">
+      <div class="row" id='current'>
+      </div>
+    </div>
+  </div>
+<div class="tab-pane" id="future-tab">
+    <div class="container">
+      <div class="row" id='future'>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var x = [];
+  jQuery.get("http://localhost:3000/comps_display", "", function(response) {
+    response.forEach(function(x) {
+      addCompBox(x['comp'], x['date'], x['id'], x['future']);
+    });
+  }, "json")
+
+  function addCompBox(response, time, id, future) {
+    // date logic for element id
+
+    time = new Date(time);
+    if (time < new Date()) {
+      tab = 'past';
+    } else if (future) {
+      tab = 'future'
+    } else {
+      tab = 'current'
+    }
+    var row = document.getElementById(tab);
+    var col = document.createElement('div');
+    col.className="col-md-4";
+    row.appendChild(col);
+    var jumbo = document.createElement('div');
+    jumbo.className="jumbotron";
+    col.appendChild(jumbo);
+    var name = document.createElement('h3');
+    name.id = id;
+    name.innerText = response;
+    jumbo.appendChild(name);
+    jumbo.appendChild(document.createElement('hr'));
+    one = document.createElement('p');
+    one.innerText = '';
+    two = document.createElement('p');
+    two.innerText = '';
+    three = document.createElement('p');
+    three.innerText = '';
+    jumbo.appendChild(one);
+    jumbo.appendChild(two);
+    jumbo.appendChild(three);
+    jumbo.setAttribute("data-toggle", "modal");
+    jumbo.setAttribute("data-target", "#inputModal");
+  }
+</script>
+<%= render partial: "input_modal" %>

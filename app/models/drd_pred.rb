@@ -1,0 +1,3 @@
+class DrdPred < Prediction
+
+end

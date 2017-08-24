@@ -1,0 +1,3 @@
+class ManiaPred < Prediction
+
+end

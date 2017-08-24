@@ -1,9 +1,27 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-  </head>
+<%= stylesheet_link_tag 'application' %>
+<%= javascript_include_tag 'application' %>
+<html lang="en">
+  <%= render partial: "head" %>
   <body>
-<%= javascript_pack_tag 'hello_angular' %>
-</body>
+    <%= render partial: "navbar" %>
+    <%= render partial: "dashboard" %>
+
+<!--
+        <div class="col-md-4">
+          <div class="jumbotron">
+            <h3>Raas Chaos</h3>
+            <hr>
+            <p>1. <a href="">UMBC Raascals</p></a>
+            <p>2. <a href="">UVA Hooraas</p></a>
+            <p>3. <a href="">GT Ramblin' Raas</p></a>
+          </div>
+        </div> -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  </body>
 </html>

@@ -1,0 +1,3 @@
+class BorPred < Prediction
+
+end

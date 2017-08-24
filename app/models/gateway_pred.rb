@@ -1,0 +1,3 @@
+class GatewayPred < Prediction
+
+end

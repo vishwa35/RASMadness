@@ -1,0 +1,3 @@
+class MayhemPred < Prediction
+
+end

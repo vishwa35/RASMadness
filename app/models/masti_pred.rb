@@ -1,0 +1,3 @@
+class MastiPred < Prediction
+
+end

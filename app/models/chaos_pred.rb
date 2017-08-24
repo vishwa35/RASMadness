@@ -1,6 +1,7 @@
 class ChaosPred < Prediction
 
-  @@teams = Set.new [Teams::GT,
+  def self.teams
+    Set.new [Teams::GT,
     Teams::UMBC,
     Teams::UVA,
     Teams::EMORY,
@@ -8,8 +9,11 @@ class ChaosPred < Prediction
     Teams::UMD,
     Teams::UT,
     Teams::UMBC]
+  end
 
-  @@placings = [Teams::UVA, Teams::UMBC, Teams::UT]
+  def self.placings
+    [Teams::UVA, Teams::UMBC, Teams::UT]
+  end
 
 
   # TODO: first second and third cannot contain duplicates

@@ -1,0 +1,38 @@
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eee;
+}
+.container .jumbotron,
+.container-fluid .jumbotron {
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 6px;
+}
+.jumbotron .container {
+  max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .container .jumbotron,
+  .container-fluid .jumbotron {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .jumbotron h1,
+  .jumbotron .h1 {
+    font-size: 63px;
+  }
+  .jumbotron h3,
+  .jumbotron .h3 {
+    font-size: 20px;
+  }
+}
+body {
+  margin-top: 75px!important;
+}

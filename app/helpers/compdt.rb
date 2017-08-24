@@ -1,4 +1,4 @@
-module CompDT
+module Compdt
 
   # EST
   ATS = "2018-02-02 16:00:00"
@@ -11,7 +11,7 @@ module CompDT
   RANGEELO = "2018-02-02 16:00:00"
   CCR = "2018-02-16 16:00:00"
   # CST
-  R2B2 = "2018-03-02 17:00:00"
+  R2 = "2018-03-02 17:00:00"
   ROYALTY = "2018-03-02 17:00:00"
   GATEWAY = "2018-02-02 17:00:00"
   SPACECITY = "2018-02-02 17:00:00"
@@ -22,4 +22,11 @@ module CompDT
   GWA = "2018-02-16 19:00:00"
   SANEDO = "2018-02-23 17:00:00"
 
+  def self.list
+    list = []
+    self.constants.each do |c|
+      list.push(self.const_get(c))
+    end
+    return list
+  end
 end
