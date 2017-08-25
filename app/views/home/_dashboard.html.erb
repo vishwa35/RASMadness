@@ -56,9 +56,9 @@
     row.appendChild(col);
     var jumbo = document.createElement('div');
     jumbo.className="jumbotron";
+    jumbo.id = id;
     col.appendChild(jumbo);
     var name = document.createElement('h3');
-    name.id = id;
     name.innerText = response;
     jumbo.appendChild(name);
     jumbo.appendChild(document.createElement('hr'));
@@ -72,7 +72,13 @@
     jumbo.appendChild(two);
     jumbo.appendChild(three);
     jumbo.setAttribute("data-toggle", "modal");
-    jumbo.setAttribute("data-target", "#inputModal");
+    jumbo.setAttribute("href", "#inputModal");
   }
+  $(document).on("click", ".jumbotron", function(x) {
+     var id = x.currentTarget.getAttribute('id');
+     var title = $('div#'+id+'.jumbotron h3')[0].innerText;
+     $("#inputModalTitle").text(title);
+     document.getElementById("inputModalTitle").title = id;
+  });
 </script>
 <%= render partial: "input_modal" %>

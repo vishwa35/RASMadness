@@ -72,7 +72,6 @@
         e.preventDefault();
         var team = document.getElementById("teamAffiliation");
         var predSwitch = document.getElementById("predSwitch");
-        console.log(predSwitch.value)
         params = "id="+ uid + "&team=" + team.options[team.selectedIndex].text + "&pred=" +  predSwitch.getAttribute("checked");
         jQuery.post("http://localhost:3000/save_profile", params, function(x) {
           if (x == false) {
@@ -81,7 +80,4 @@
         }, "json");
     });
 });
-  function save_profile() {
-
-  }
 </script>

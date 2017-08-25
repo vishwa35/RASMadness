@@ -3,12 +3,6 @@ class ApiController < ApplicationController
   require_relative '../helpers/compdt.rb'
   require_relative '../helpers/teams.rb'
 
-  def get_comps
-  end
-
-  def get_preds(comp)
-  end
-
   def comps
       # curl -X GET http://localhost:3000/comps
       render :json => Comps.list
@@ -19,19 +13,14 @@ class ApiController < ApplicationController
       render :json => Comps.date_json
   end
 
-  def teams
-    # curl -X GET http://localhost:3000/teams
-      render :json => Teams.list
-  end
-
-  def compdt
+def compdt
     # curl -X GET http://localhost:3000/compdt
       render :json => Comps.date_map.values
   end
 
   def get_team_list
     #curl -X POST -d "Chaos" http://localhost:3000/comp_teams
-    teams = (request.body.read.to_s + 'Pred').constantize.teams
+    teams = (request.body.read.to_s.titleize + 'Pred').constantize.teams
     render :json => teams
   end
 
@@ -62,5 +51,11 @@ class ApiController < ApplicationController
     end
     user.update(team_affiliation: params[:team], predictions_bool: params[:pred])
     render :json => user
+  end
+
+  def get_teams
+    #curl -X POST -d "id=6&team=some team&pred=true" http://localhost:3000/save_profile
+    user = User.find(params[:id])
+    
   end
 end
