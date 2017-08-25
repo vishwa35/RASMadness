@@ -30,7 +30,7 @@
     </div>
   </div>
 </div>
-
+<%= render partial: "input_modal" %>
 <script>
   var x = [];
   jQuery.get("http://localhost:3000/comps_display", "", function(response) {
@@ -41,7 +41,6 @@
 
   function addCompBox(response, time, id, future) {
     // date logic for element id
-
     time = new Date(time);
     if (time < new Date()) {
       tab = 'past';
@@ -57,6 +56,7 @@
     var jumbo = document.createElement('div');
     jumbo.className="jumbotron";
     jumbo.id = id;
+    jumbo.title = tab;
     col.appendChild(jumbo);
     var name = document.createElement('h3');
     name.innerText = response;
@@ -71,14 +71,37 @@
     jumbo.appendChild(one);
     jumbo.appendChild(two);
     jumbo.appendChild(three);
-    jumbo.setAttribute("data-toggle", "modal");
-    jumbo.setAttribute("href", "#inputModal");
+    if (tab != "future") {
+      jumbo.setAttribute("data-toggle", "modal");
+      jumbo.setAttribute("href", "#inputModal");
+    }
   }
   $(document).on("click", ".jumbotron", function(x) {
      var id = x.currentTarget.getAttribute('id');
+     var tab = x.currentTarget.getAttribute('title');
      var title = $('div#'+id+'.jumbotron h3')[0].innerText;
      $("#inputModalTitle").text(title);
      document.getElementById("inputModalTitle").title = id;
+     uid = getCookie("uid");
+     var param = id;
+     [].forEach.call($('.form-control'), function(select) {
+       $(select).empty();
+     });
+     if (tab == "current") { //tab not in scope here
+       jQuery.post("http://localhost:3000/comp_teams", param, function(teams) {
+         [].forEach.call(document.getElementsByClassName("form-control"), function(select) {
+           teams.forEach(function(x) {
+             option = document.createElement('option');
+             option.innerText=x;
+             option.selectedIndex = 2;
+             select.appendChild(option);
+           });
+         });
+       }, "json");
+     } else if (tab == "past") {
+       [].forEach.call($('.form-control'), function(select) {
+         $(select).prop('readonly', true);
+       });
+     }
   });
 </script>
-<%= render partial: "input_modal" %>

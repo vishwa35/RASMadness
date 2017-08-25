@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/get_user', to: 'api#get_user'
   post '/id_get_user', to: 'api#id_get_user'
   post '/save_profile', to: 'api#save_profile'
+  post '/get_preds', to: 'api#get_preds'
 
   get '/', to: 'home#index'
   get '/account', to: 'profile#index'

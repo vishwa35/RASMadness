@@ -21,12 +21,6 @@
         <% end %>
       </select>
     </div>
-    <!-- <div class="form-check">
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" id="pointsSwitch">
-        Display my points on the standings page
-      </label>
-    </div> -->
     <div class="form-check">
       <label class="form-check-label">
         <input type="checkbox" class="form-check-input" id="predSwitch">
@@ -48,7 +42,6 @@
     var team = document.getElementById("teamAffiliation");
     var user_team = user["team_affiliation"].toString();
     var found = false;
-
     for (x = 1; x < team.options.length && !found; x++) {
       option = team.options[x].value;
       if (user_team == option) {
@@ -67,7 +60,8 @@
     // var name_field = document.getElementById("pointsSwitch");
     // name_field.setAttribute("value", user["full_name"]);
   }, "json");
-  $(function(){
+
+  $(function() {
     $('#profile').on('submit', function(e){
         e.preventDefault();
         var team = document.getElementById("teamAffiliation");

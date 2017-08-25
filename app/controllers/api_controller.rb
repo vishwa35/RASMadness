@@ -3,19 +3,9 @@ class ApiController < ApplicationController
   require_relative '../helpers/compdt.rb'
   require_relative '../helpers/teams.rb'
 
-  def comps
-      # curl -X GET http://localhost:3000/comps
-      render :json => Comps.list
-  end
-
   def comps_display
       # curl -X GET http://localhost:3000/comps_display
       render :json => Comps.date_json
-  end
-
-def compdt
-    # curl -X GET http://localhost:3000/compdt
-      render :json => Comps.date_map.values
   end
 
   def get_team_list
@@ -53,9 +43,10 @@ def compdt
     render :json => user
   end
 
-  def get_teams
-    #curl -X POST -d "id=6&team=some team&pred=true" http://localhost:3000/save_profile
-    user = User.find(params[:id])
-    
+  def get_preds
+    #curl -X POST -d "id=1&comp=CHAOS" http://localhost:3000/get_preds
+    id = params[:id]
+    record = (params[:comp].to_s.titleize + 'Pred').constantize.where(uid: id).first
+    render :json => record
   end
 end
