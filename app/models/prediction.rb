@@ -5,12 +5,6 @@ class Prediction < ActiveRecord::Base
 
   # TODO: don't creaate 2 records of same uid. update if already exists. this is probably in controller.
 
-
-  validate :prediction_validation
-
-  @@teams = [1, 2, 3]
-  @@placings = [1, 2, 3]
-
   def self.teams
     Set.new []
   end
@@ -19,18 +13,13 @@ class Prediction < ActiveRecord::Base
     []
   end
 
-  def prediction_validation
-    if @@teams.include?(first) and @@teams.include?(second) and @@teams.include?(third)
-      return true
-    end
-    errors.add(:first, "teams must be competing in this comp")
-    return false
-  end
-
+  # validates :first, inclusion: {in: teams}
+  # validates :second, inclusion: {in: teams}
+  # validates :third, inclusion: {in: teams}
 
   def placing_validation
-    @@placings.each do |p|
-      if not @@teams.include?(p)
+    self.placings.each do |p|
+      if not self.teams.include?(p)
         return false
       end
     end
@@ -40,21 +29,21 @@ class Prediction < ActiveRecord::Base
   def self.calc_points
     self.all.each do |pred|
       temp = 0
-      if pred.first == @@placings[0]
+      if pred.first == placings[0]
         temp += 0
-      elsif @@placings.include?(pred.first)
-        temp += 0
-      end
-
-      if pred.second == @@placings[1]
-        temp += 0
-      elsif @@placings.include?(pred.second)
+      elsif self.placings.include?(pred.first)
         temp += 0
       end
 
-      if pred.third == @@placings[2]
+      if pred.second == self.placings[1]
         temp += 0
-      elsif @@placings.include?(pred.third)
+      elsif self.placings.include?(pred.second)
+        temp += 0
+      end
+
+      if pred.third == self.placings[2]
+        temp += 0
+      elsif self.placings.include?(pred.third)
         temp += 0
       end
       pred.update(points: temp)

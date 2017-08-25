@@ -8,10 +8,18 @@ class ApiController < ApplicationController
       render :json => Comps.date_json
   end
 
-  def get_team_list
+  def get_team_list_old
     #curl -X POST -d "Chaos" http://localhost:3000/comp_teams
     teams = (request.body.read.to_s.titleize + 'Pred').constantize.teams
     render :json => teams
+  end
+
+  def get_team_list
+    #curl -X POST -d "comp=Chaos&uid=1" http://localhost:3000/comp_teams
+    comp_class = (params[:comp].to_s.titleize + 'Pred').constantize
+    teams = comp_class.teams
+    pred = comp_class.where(uid: params[:uid]).first
+    render :json => {teams: teams, preds: pred}
   end
 
   def get_user
@@ -45,8 +53,21 @@ class ApiController < ApplicationController
 
   def get_preds
     #curl -X POST -d "id=1&comp=CHAOS" http://localhost:3000/get_preds
-    id = params[:id]
+    id = params[:uid]
     record = (params[:comp].to_s.titleize + 'Pred').constantize.where(uid: id).first
     render :json => record
+  end
+
+  def save_preds
+    #curl -X POST -d "comp=CHAOS&first=GT Ramblin' Raas&second=UMBC Raascals&third=VCU Ricochet Raas&uid=5" http://localhost:3000/save_preds
+    uid = params[:uid]
+    comp_class = (params[:comp].to_s.titleize + 'Pred').constantize
+    if (comp_class.where(uid: uid).first.nil?)
+      record = comp_class.create(uid: uid, first:  params[:first], second: params[:second], third: params[:third])
+      success = record.id.nil? ? false : true
+    else
+      success = comp_class.where(uid: uid).first.update(first:  params[:first], second: params[:second], third: params[:third])
+    end
+    render :json => success
   end
 end

@@ -8,13 +8,12 @@ class ChaosPred < Prediction
     Teams::RU,
     Teams::UMD,
     Teams::UT,
-    Teams::UMBC]
+    Teams::VCU]
   end
 
   def self.placings
     [Teams::UVA, Teams::UMBC, Teams::UT]
   end
-
 
   # TODO: first second and third cannot contain duplicates
 

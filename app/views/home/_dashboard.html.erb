@@ -83,25 +83,46 @@
      $("#inputModalTitle").text(title);
      document.getElementById("inputModalTitle").title = id;
      uid = getCookie("uid");
-     var param = id;
+     var params = "comp=" + id + "&uid=" + uid;
      [].forEach.call($('.form-control'), function(select) {
        $(select).empty();
      });
      if (tab == "current") { //tab not in scope here
-       jQuery.post("http://localhost:3000/comp_teams", param, function(teams) {
+       jQuery.post("http://localhost:3000/comp_teams", params, function(response) {
+         teams = response["teams"];
+         preds = response["preds"];
          [].forEach.call(document.getElementsByClassName("form-control"), function(select) {
            teams.forEach(function(x) {
              option = document.createElement('option');
              option.innerText=x;
-             option.selectedIndex = 2;
              select.appendChild(option);
            });
+           if (preds != null) {
+             selection = preds[select.id];
+             found = false;
+             for (x = 1; x < select.options.length && !found; x++) {
+               option = select.options[x].value;
+               if (selection == option) {
+                 select.selectedIndex = x;
+                 found = true;
+               }
+             }
+           }
          });
        }, "json");
      } else if (tab == "past") {
-       [].forEach.call($('.form-control'), function(select) {
-         $(select).prop('readonly', true);
-       });
+       $('.btn').remove();
+       params = "comp=" + id + "&uid=" + uid;
+       jQuery.post("http://localhost:3000/get_preds", params, function(response) {
+
+         [].forEach.call($('.form-control'), function(select) {
+           selection = response[select.id];
+           option = document.createElement('option');
+           option.innerText=selection;
+           select.appendChild(option);
+           $(select).prop('disabled', true);
+         });
+       }, "json")
      }
   });
 </script>

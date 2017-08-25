@@ -1,17 +1,17 @@
 <form id="input">
   <div class="form-group">
-    <label for="one">First Place</label>
-    <select class="form-control" id="one">
+    <label for="first">First Place</label>
+    <select class="form-control" id="first">
     </select>
   </div>
   <div class="form-group">
-    <label for="two">Second Place</label>
-    <select class="form-control" id="two">
+    <label for="second">Second Place</label>
+    <select class="form-control" id="second">
     </select>
   </div>
   <div class="form-group">
-    <label for="three">Third Place</label>
-    <select class="form-control" id="three">
+    <label for="third">Third Place</label>
+    <select class="form-control" id="third">
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
@@ -22,13 +22,15 @@
     $('#input').on('submit', function(e){
         e.preventDefault();
         var comp = document.getElementById("inputModalTitle").title;
-        var one = document.getElementById("one");
-        var two = document.getElementById("two");
-        var three = document.getElementById("three");
-        params = "comp=" + comp + "&one="+ one + "&two=" + two + "&three=" +  three + "&id=" + uid;
+        var first = document.getElementById("first").value;
+        var second = document.getElementById("second").value;
+        var third = document.getElementById("third").value;
+        params = "comp=" + comp + "&first="+ first + "&second=" + second + "&third=" +  third + "&uid=" + uid;
         jQuery.post("http://localhost:3000/save_preds", params, function(x) {
-          if (x == false) {
-            launchModal();
+          if (x == "false") {
+            $(".errorModal").modal("show")
+          } else {
+            $(".inputModal").modal("hide")
           }
         }, "json");
     });

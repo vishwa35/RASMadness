@@ -20,6 +20,7 @@ module Teams
   SLU = "SLU Raas"
   UT = "Texas Raas (DSD)"
   UTD = "UTD TaRaas"
+  VCU = "VCU Ricochet Raas"
 
   def self.list
     list = []
