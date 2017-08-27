@@ -1,4 +1,4 @@
-class Comps < ActiveRecord::Migration[5.1]
+class AddComps < ActiveRecord::Migration[5.1]
   def change
     # TODO: Add keys in the users table for name, points, and team affiliation
 
@@ -110,7 +110,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :space_city_preds do |t|
+    create_table :spacecity_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false
@@ -146,7 +146,7 @@ class Comps < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :r2b2_preds do |t|
+    create_table :r2_preds do |t|
       t.integer :uid, null: false
       t.string :first, null: false
       t.string :second, null: false

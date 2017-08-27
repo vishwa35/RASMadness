@@ -1,0 +1,72 @@
+<script>
+uid = getCookie("uid");
+jQuery.post("http://localhost:3000/get_standings", "uid=" + uid, function(response) {
+  my_team = response['team'];
+  response["table_data"].forEach(function(data) {
+    addTableRow(data, my_team);
+  });
+}, "json");
+function addTableRow(data, my_team) {
+  name = data['name'];
+  points = data['points'];
+  team =  data['team'];
+  same_team = (team == my_team);
+  var tr = document.createElement('tr');
+  var dname = document.createElement('td');
+  dname.innerText = name;
+  var dpoints = document.createElement('td');
+  dpoints.innerText = points;
+  var dteam = document.createElement('td');
+  dteam.innerText = team;
+  tr.appendChild(dname);
+  tr.appendChild(dpoints);
+  tr.appendChild(dteam);
+  $("#all-body").append($(tr).clone());
+  if (same_team) {
+    $("#team-body").append($(tr).clone());
+  }
+}
+</script>
+<div class="container">
+  <nav>
+    <ul class="nav nav-justified nav-pills">
+      <li  class="active"><a data-target="#all-tab" data-toggle="tab">All</a></li>
+      <li><a data-target="#team-tab" data-toggle="tab">My Team</a></li>
+    </ul>
+  </nav>
+</div>
+<hr>
+<br>
+<br>
+<div class="tab-content">
+<div class="tab-pane active" id="all-tab">
+    <div class="container">
+      <table id="all-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody id="all-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+<div class="tab-pane" id="team-tab">
+    <div class="container">
+      <table id="team-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody id="team-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

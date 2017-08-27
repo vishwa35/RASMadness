@@ -35,26 +35,6 @@ module Comps
     self.constants.each do |c|
       list.push({:comp => self.const_get(c), :id => c, :date => self.date_map[c], :future => (c.to_s.titleize+'Pred').constantize.teams.size == 0 ? true : false})
     end
-    # [{:comp => ATS, :date => "2018-02-02 12:00:00 -0400"},
-    # {:comp => MAYHEM, :date => "2018-02-02 12:00:00 -0400"},
-    # {:comp => DRD, :date => "2018-02-02 12:00:00 -0400"},
-    # {:comp => MASTI, :date => "2018-02-02 12:00:00 -0400"},
-    # {:comp => RCR, :date => "2018-02-09 12:00:00 -0400"},
-    # {:comp => CHAOS, :date => "2017-11-17 12:00:00 -0400"},
-    # {:comp => BOR, :date => "2018-01-26 12:00:00 -0400"},
-    # {:comp => RANGEELO, :date => "2018-02-02 12:00:00 -0400"},
-    # {:comp => CCR, :date => "2018-02-16 12:00:00 -0400"},
-    # # CST
-    # {:comp => R2, :date => "2018-03-02 13:00:00 -0400"},
-    # {:comp => ROYALTY, :date => "2018-03-02 13:00:00 -0400"},
-    # {:comp => GATEWAY, :date => "2018-02-02 13:00:00 -0400"},
-    # {:comp => SPACECITY, :date => "2018-02-02 13:00:00 -0400"},
-    # {:comp => MANIA, :date => "2018-02-02 13:00:00 -0400"},
-    # {:comp => RODEO, :date => "2018-02-02 13:00:00 -0400"},
-    # {:comp => DD, :date => "2018-02-02 13:00:00 -0400"},
-    # # PST
-    # {:comp => GWA, :date => "2018-02-16 15:00:00 -0400"},
-    # {:comp => SANEDO, :date => "2018-02-23 15:00:00 -0400"}]
     return list
   end
 

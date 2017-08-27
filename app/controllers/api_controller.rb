@@ -3,9 +3,19 @@ class ApiController < ApplicationController
   require_relative '../helpers/compdt.rb'
   require_relative '../helpers/teams.rb'
 
-  def comps_display
+  def comps_display_old
       # curl -X GET http://localhost:3000/comps_display
       render :json => Comps.date_json
+  end
+
+  def comps_display
+      # curl -X POST -d "uid=1" http://localhost:3000/comps_display
+      list = []
+      Comps.constants.each do |c|
+        comp_class = (c.to_s.titleize+'Pred').constantize
+        list.push({:comp => Comps.const_get(c), :teams => comp_class.teams, :id => c, :date => Comps.date_map[c], :user_preds => comp_class.where(uid: params[:uid]).first})
+      end
+      render :json => list
   end
 
   def get_team_list_old
@@ -69,5 +79,15 @@ class ApiController < ApplicationController
       success = comp_class.where(uid: uid).first.update(first:  params[:first], second: params[:second], third: params[:third])
     end
     render :json => success
+  end
+
+  def get_standings
+    #curl -X POST -d "uid=5" http://localhost:3000/get_standings
+    uid = params[:uid]
+    table_data = []
+    User.all.each do |user|
+      table_data.push({name: user.try(:full_name), points: user.try(:points), team: user.try(:team_affiliation)})
+    end
+    render :json => {team: User.find(uid).try(:team_affiliation), table_data: table_data}
   end
 end

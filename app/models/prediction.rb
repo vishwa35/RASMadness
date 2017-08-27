@@ -30,21 +30,21 @@ class Prediction < ActiveRecord::Base
     self.all.each do |pred|
       temp = 0
       if pred.first == placings[0]
-        temp += 0
+        temp += 2
       elsif self.placings.include?(pred.first)
-        temp += 0
+        temp += 1
       end
 
       if pred.second == self.placings[1]
-        temp += 0
+        temp += 2
       elsif self.placings.include?(pred.second)
-        temp += 0
+        temp += 1
       end
 
       if pred.third == self.placings[2]
-        temp += 0
+        temp += 2
       elsif self.placings.include?(pred.third)
-        temp += 0
+        temp += 1
       end
       pred.update(points: temp)
     end

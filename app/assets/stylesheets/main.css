@@ -3,7 +3,7 @@
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  background-color: #c0c9d2;
 }
 .container .jumbotron,
 .container-fluid .jumbotron {
@@ -35,4 +35,5 @@
 }
 body {
   margin-top: 75px!important;
+  padding-top: 2rem;
 }

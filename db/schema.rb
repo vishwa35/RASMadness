@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20170822031534) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "r2b2_preds", force: :cascade do |t|
+  create_table "r2_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20170822031534) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "space_city_preds", force: :cascade do |t|
+  create_table "spacecity_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
     t.string "second", null: false

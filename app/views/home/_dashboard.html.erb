@@ -30,16 +30,37 @@
     </div>
   </div>
 </div>
-<%= render partial: "input_modal" %>
+
 <script>
   var x = [];
-  jQuery.get("http://localhost:3000/comps_display", "", function(response) {
-    response.forEach(function(x) {
-      addCompBox(x['comp'], x['date'], x['id'], x['future']);
+  uid = getCookie("uid");
+  jQuery.post("http://localhost:3000/comps_display", "uid=" + uid, function(response) {
+    response.forEach(function(data) {
+      addCompBox(data);
+      id = data['id']
+      $('#' + id +"form").on('submit', function(e){
+            e.preventDefault();
+            var comp = data['id'];
+            var first = $("#"+comp+"form" + " #first :selected").text();
+            var second = $("#"+comp+"form" + " #second :selected").text();
+            var third = $("#"+comp+"form" + " #third :selected").text();
+            params = "comp=" + comp + "&first="+ first + "&second=" + second + "&third=" +  third + "&uid=" + uid;
+            jQuery.post("http://localhost:3000/save_preds", params, function(x) {
+              if (x == "false") {
+                $("#errorModal").modal("show")
+              }
+            }, "json");
+        });
     });
-  }, "json")
+  }, "json");
 
-  function addCompBox(response, time, id, future) {
+  function addCompBox(data) {
+    response = data['comp'];
+    time = data['date'];
+    id =  data['id'];
+    teams = data['teams'];
+    future = teams.length == 0 ? true : false
+    preds = data['user_preds']
     // date logic for element id
     time = new Date(time);
     if (time < new Date()) {
@@ -58,71 +79,103 @@
     jumbo.id = id;
     jumbo.title = tab;
     col.appendChild(jumbo);
+    var div = document.createElement('div');
     var name = document.createElement('h3');
     name.innerText = response;
-    jumbo.appendChild(name);
-    jumbo.appendChild(document.createElement('hr'));
-    one = document.createElement('p');
-    one.innerText = '';
-    two = document.createElement('p');
-    two.innerText = '';
-    three = document.createElement('p');
-    three.innerText = '';
-    jumbo.appendChild(one);
-    jumbo.appendChild(two);
-    jumbo.appendChild(three);
-    if (tab != "future") {
-      jumbo.setAttribute("data-toggle", "modal");
-      jumbo.setAttribute("href", "#inputModal");
+    jumbo.appendChild(div);
+    div.appendChild(name);
+    div.appendChild(document.createElement('hr'));
+
+    if (tab != 'future') {
+      div.setAttribute("data-toggle", "collapse");
+      div.setAttribute("data-target", "#" + id + "form");
+      if (tab == 'current') {
+        //form
+        form = document.createElement('form');
+        form.id = id + "form";
+        form.className="collapse"
+        jumbo.appendChild(form);
+        //first
+        form_group = document.createElement('div');
+        form_group.className = "form-group"
+        label = document.createElement('label');
+        label.for="first";
+        label.innerText = "First Place";
+        select = document.createElement('select');
+        select.className = "form-control";
+        select.id = "first";
+        form_group.appendChild(label);
+        form_group.appendChild(select);
+        form.appendChild(form_group);
+        //second
+        form_group = document.createElement('div');
+        form_group.className = "form-group"
+        label = document.createElement('label');
+        label.for="second";
+        label.innerText = "Second Place";
+        select = document.createElement('select');
+        select.className = "form-control";
+        select.id = "second";
+        form_group.appendChild(label);
+        form_group.appendChild(select);
+        form.appendChild(form_group);
+        //third
+        form_group = document.createElement('div');
+        form_group.className = "form-group"
+        label = document.createElement('label');
+        label.for="third";
+        label.innerText = "Third Place";
+        select = document.createElement('select');
+        select.className = "form-control";
+        select.id = "third";
+        form_group.appendChild(label);
+        form_group.appendChild(select);
+        form.appendChild(form_group);
+        submit = document.createElement('button');
+        submit.className = "btn btn-primary"
+        submit.type = "submit"
+        submit.innerText ="Save"
+        form.appendChild(submit);
+        [].forEach.call(document.getElementsByClassName("form-control"), function(select) {
+          teams.forEach(function(x) {
+            option = document.createElement('option');
+            option.innerText=x;
+            select.appendChild(option);
+          });
+          if (preds != null) {
+            selection = preds[select.id];
+            found = false;
+            for (x = 1; x < select.options.length && !found; x++) {
+              option = select.options[x].value;
+              if (selection == option) {
+                select.selectedIndex = x;
+                found = true;
+              }
+            }
+          }
+        });
+      } else if (tab = "past") {
+        form = document.createElement('form');
+        form.id = id + "form";
+        form.className="collapse"
+        jumbo.appendChild(form);
+        if (preds != null) {
+          one = document.createElement('p');
+          one.innerText = "1. " + preds["first"];
+          two = document.createElement('p');
+          two.innerText = "2. " + preds["second"];
+          three = document.createElement('p');
+          three.innerText = "3. " + preds["third"];
+          form.appendChild(one);
+          form.appendChild(two);
+          form.appendChild(three);
+        } else {
+          one = document.createElement('p');
+          one.innerText = "No predictions"
+          form.appendChild(one);
+
+        }
+      }
     }
   }
-  $(document).on("click", ".jumbotron", function(x) {
-     var id = x.currentTarget.getAttribute('id');
-     var tab = x.currentTarget.getAttribute('title');
-     var title = $('div#'+id+'.jumbotron h3')[0].innerText;
-     $("#inputModalTitle").text(title);
-     document.getElementById("inputModalTitle").title = id;
-     uid = getCookie("uid");
-     var params = "comp=" + id + "&uid=" + uid;
-     [].forEach.call($('.form-control'), function(select) {
-       $(select).empty();
-     });
-     if (tab == "current") { //tab not in scope here
-       jQuery.post("http://localhost:3000/comp_teams", params, function(response) {
-         teams = response["teams"];
-         preds = response["preds"];
-         [].forEach.call(document.getElementsByClassName("form-control"), function(select) {
-           teams.forEach(function(x) {
-             option = document.createElement('option');
-             option.innerText=x;
-             select.appendChild(option);
-           });
-           if (preds != null) {
-             selection = preds[select.id];
-             found = false;
-             for (x = 1; x < select.options.length && !found; x++) {
-               option = select.options[x].value;
-               if (selection == option) {
-                 select.selectedIndex = x;
-                 found = true;
-               }
-             }
-           }
-         });
-       }, "json");
-     } else if (tab == "past") {
-       $('.btn').remove();
-       params = "comp=" + id + "&uid=" + uid;
-       jQuery.post("http://localhost:3000/get_preds", params, function(response) {
-
-         [].forEach.call($('.form-control'), function(select) {
-           selection = response[select.id];
-           option = document.createElement('option');
-           option.innerText=selection;
-           select.appendChild(option);
-           $(select).prop('disabled', true);
-         });
-       }, "json")
-     }
-  });
 </script>

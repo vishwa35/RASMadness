@@ -28,11 +28,11 @@
         params = "comp=" + comp + "&first="+ first + "&second=" + second + "&third=" +  third + "&uid=" + uid;
         jQuery.post("http://localhost:3000/save_preds", params, function(x) {
           if (x == "false") {
-            $(".errorModal").modal("show")
+            $("#errorModal").modal("show")
           } else {
-            $(".inputModal").modal("hide")
+            $("#inputModal").modal("hide")
           }
         }, "json");
     });
-});
+  });
 </script>
