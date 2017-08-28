@@ -16,7 +16,11 @@
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
 </form>
-
+<% if Rails.env.production? %>
+  <script> url = "https://rasmadness.herokuapp.com" </script>
+<% else %>
+  <script> url = "http://localhost:3000" </script>
+<% end %>
 <script>
   $(function() {
     $('#input').on('submit', function(e){
@@ -26,7 +30,7 @@
         var second = document.getElementById("second").value;
         var third = document.getElementById("third").value;
         params = "comp=" + comp + "&first="+ first + "&second=" + second + "&third=" +  third + "&uid=" + uid;
-        jQuery.post("http://localhost:3000/save_preds", params, function(x) {
+        jQuery.post(url+ "/save_preds", params, function(x) {
           if (x == "false") {
             $("#errorModal").modal("show")
           } else {

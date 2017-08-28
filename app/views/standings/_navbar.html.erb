@@ -19,6 +19,11 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+<% if Rails.env.production? %>
+  <script> url = "https://rasmadness.herokuapp.com" </script>
+<% else %>
+  <script> url = "http://localhost:3000" </script>
+<% end %>
 <script>
   var currUser;
   function onSignIn(googleUser) {
@@ -27,7 +32,7 @@
     }
     var profile = googleUser.getBasicProfile();
     params = "email=" + profile.getEmail() + "&name=" + profile.getName() + "&image=" + profile.getImageUrl();
-    jQuery.post("http://localhost:3000/get_user", params, function(user) {
+    jQuery.post(url + "/get_user", params, function(user) {
       setCookie("uid", user["id"], 5);
     }, "json")
   }

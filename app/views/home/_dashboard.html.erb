@@ -30,11 +30,15 @@
     </div>
   </div>
 </div>
-
+<% if Rails.env.production? %>
+  <script> url = "https://rasmadness.herokuapp.com" </script>
+<% else %>
+  <script> url = "http://localhost:3000" </script>
+<% end %>
 <script>
   var x = [];
   uid = getCookie("uid");
-  jQuery.post("http://localhost:3000/comps_display", "uid=" + uid, function(response) {
+  jQuery.post(url + "/comps_display", "uid=" + uid, function(response) {
     response.forEach(function(data) {
       addCompBox(data);
       id = data['id']
@@ -45,7 +49,7 @@
             var second = $("#"+comp+"form" + " #second :selected").text();
             var third = $("#"+comp+"form" + " #third :selected").text();
             params = "comp=" + comp + "&first="+ first + "&second=" + second + "&third=" +  third + "&uid=" + uid;
-            jQuery.post("http://localhost:3000/save_preds", params, function(x) {
+            jQuery.post(url + "/save_preds", params, function(x) {
               if (x == "false") {
                 $("#errorModal").modal("show")
               }

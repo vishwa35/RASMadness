@@ -1,6 +1,11 @@
+<% if Rails.env.production? %>
+  <script> url = "https://rasmadness.herokuapp.com" </script>
+<% else %>
+  <script> url = "http://localhost:3000" </script>
+<% end %>
 <script>
 uid = getCookie("uid");
-jQuery.post("http://localhost:3000/get_standings", "uid=" + uid, function(response) {
+jQuery.post(url + "/get_standings", "uid=" + uid, function(response) {
   my_team = response['team'];
   response["table_data"].forEach(function(data) {
     addTableRow(data, my_team);
