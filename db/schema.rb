@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170822031534) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ats_preds", force: :cascade do |t|
     t.integer "uid", null: false
     t.string "first", null: false
