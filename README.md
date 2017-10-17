@@ -1,24 +1,3 @@
-# README
+# RASMadness
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### A Rails App to facilitate a predictions game (inspired by March Madness, hence the name) in a non-bracket form for the National Garba-Raas Dance Circuit
